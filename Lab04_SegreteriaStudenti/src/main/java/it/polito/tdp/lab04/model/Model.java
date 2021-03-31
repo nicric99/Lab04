@@ -38,4 +38,7 @@ public class Model {
 			
 		}
 	}
+	public boolean studenteIscritto(Integer matricola, String corso) {
+		return StudenteDAO.studenteIscritto(matricola, corso);	
+	}
 }

@@ -106,6 +106,25 @@ public class FXMLController {
 
     @FXML
     void doIscriviStudente(ActionEvent event) {
+    	// col pulsante iscrivi ci occupiamo anche del punto 5
+    	Integer matricola;
+    	String corso;
+    	boolean trovato;
+    	try {
+        	matricola= Integer.parseInt(txtCodice.getText());
+        	corso=wdwCorso.getValue();
+        	trovato=model.studenteIscritto(matricola, corso);
+        	if(trovato) {
+        		txtResult.setText("Studente iscritto al corso "+ corso);
+        	}else {
+        		txtResult.setText("Studente non iscritto al corso"+corso);
+        	}
+        	}catch(NumberFormatException nfe) {
+        		System.out.println("Errore con il codice ");
+        	}catch(NullPointerException npe) {
+        		txtResult.setText("Attenzione ,utente non esistente");
+        	}
+    	
 
     }
 
