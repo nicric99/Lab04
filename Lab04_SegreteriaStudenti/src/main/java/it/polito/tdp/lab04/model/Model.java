@@ -23,6 +23,7 @@ public class Model {
 		return CorsoDAO.getStudentiIscrittiAlCorso(corso);
 	}
 	public Studente getDatiStudente(Integer matricola) {
-		return StudenteDAO.getDatiStudente(matricola); 
+		//return StudenteDAO.getDatiStudente(matricola); 
+		return StudenteDAO.getDatiStudente(matricola);
 	}
 }

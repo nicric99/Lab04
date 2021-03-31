@@ -13,10 +13,11 @@ import it.polito.tdp.lab04.model.Studente;
 public class StudenteDAO {
 	
 	public Studente getDatiStudente(Integer matricola){
-		final String sql = "SELECT nome,cognome "+
+		final String sql = "SELECT nome,cognome,matricola,CDS "+
 				"FROM studente "+
 				"WHERE studente.matricola=? ";
-		ArrayList<Studente> studenti= new ArrayList<Studente>();
+		// inizializzazione è necessaria
+		Studente studente=null;
 		try {
 			Connection conn = ConnectDB.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
@@ -33,13 +34,13 @@ public class StudenteDAO {
 //				System.out.println(codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
 
 				// Aggiungi il nuovo oggetto Corso alla lista corsi
-				Studente studente= new Studente(matricola1,nome,cognome,CDS);
-				studenti.add(studente);
+				 studente= new Studente(matricola1,nome,cognome,CDS);
+//				studenti.add(studente);
 			}
 
 			conn.close();
-			
-			return studenti.get(0);
+			return studente;
+//			return studenti.get(0);
 			
 
 		}catch(SQLException e) {
