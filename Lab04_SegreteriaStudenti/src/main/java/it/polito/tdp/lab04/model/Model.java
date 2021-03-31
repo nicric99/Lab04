@@ -1,5 +1,6 @@
 package it.polito.tdp.lab04.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import it.polito.tdp.lab04.DAO.CorsoDAO;
@@ -25,5 +26,16 @@ public class Model {
 	public Studente getDatiStudente(Integer matricola) {
 		//return StudenteDAO.getDatiStudente(matricola); 
 		return StudenteDAO.getDatiStudente(matricola);
+	}
+	public LinkedList<Corso> getCorsiDatoStudente(Integer matricola){
+		boolean trovato;
+		trovato= StudenteDAO.cercaStudente(matricola);
+		if(!trovato) {
+			return null;
+			
+		}else{
+			return CorsoDAO.getCorsiDatoStudente(matricola);
+			
+		}
 	}
 }

@@ -48,6 +48,26 @@ public class FXMLController {
 
     @FXML
     void doCercaCorsi(ActionEvent event) {
+    	Integer matricola;
+    	LinkedList<Corso> corsi= new LinkedList<Corso>();
+    	
+    	try {
+        	matricola= Integer.parseInt(txtCodice.getText());
+        	corsi= model.getCorsiDatoStudente(matricola);
+        	System.out.println("Errore con il codice ");
+    		if(corsi.isEmpty()) {
+        		txtResult.setText(" Attenzione studente non esistente ");
+        	}else {
+        		for(Corso c:corsi) {
+        			txtResult.appendText(c.toString());
+        			txtResult.appendText("\n");
+        		}
+        	}}catch(NumberFormatException nfe) {
+        		txtResult.appendText("Errore nel codice");
+            }catch(NullPointerException npe) {
+        		txtResult.appendText(" Attenzione il codice dell'utente è inesistente");
+        	}
+    	// supponiamo uno studente abbia almeno un corso a cui partecipa
 
     }
 
@@ -79,6 +99,8 @@ public class FXMLController {
     	txtCognome.setText(s.getCognome());
     	}catch(NumberFormatException nfe) {
     		System.out.println("Errore con il codice ");
+    	}catch(NullPointerException npe) {
+    		txtResult.setText("Attenzione ,utente non esistente");
     	}
     }
 

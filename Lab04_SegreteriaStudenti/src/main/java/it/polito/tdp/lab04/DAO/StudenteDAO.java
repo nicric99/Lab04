@@ -49,4 +49,32 @@ public class StudenteDAO {
 		}
 	}
 	
+	public boolean cercaStudente(Integer matricola) {
+		final String sql = "SELECT matricola "+
+				"FROM studente "+
+				"WHERE studente.matricola=? ";
+		// inizializzazione è necessaria
+		Studente studente=null;
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, matricola);
+			ResultSet rs = st.executeQuery();
+			if(rs.next()==false) {
+				return false;
+			}else {
+				return true;
+			}
+
+		}catch(SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db", e);
+		}
+		
+		
+		
+		
+		
+	}
+	
 }
